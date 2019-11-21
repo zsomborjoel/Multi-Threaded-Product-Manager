@@ -32,7 +32,7 @@ public class ProductController {
     @RequestMapping(method = RequestMethod.POST,
                     consumes = {MediaType.MULTIPART_FORM_DATA_VALUE}, 
                     produces = {MediaType.APPLICATION_JSON_VALUE})
-    public @ResponseBody ResponseEntity uploadFile(@RequestParam(value = "files") MultipartFile[] files) {
+    public @ResponseBody ResponseEntity<?> uploadFile(@RequestParam(value = "files") MultipartFile[] files) {
         try {
             for (final MultipartFile file : files) {
                 productService.saveProducts(file);
@@ -46,9 +46,9 @@ public class ProductController {
     @RequestMapping(method = RequestMethod.GET,
                     consumes = {MediaType.APPLICATION_JSON_VALUE},
                     produces = {MediaType.APPLICATION_JSON_VALUE})
-    public @ResponseBody CompletableFuture<ResponseEntity> getAllProduct() {
+    public @ResponseBody CompletableFuture<ResponseEntity<?>> getAllProduct() {
 		return productService.getAllProducts().
-                <ResponseEntity>thenApply(ResponseEntity::ok).
+                <ResponseEntity<?>>thenApply(ResponseEntity::ok).
                 exceptionally(handleGetProductFailures);
     }
 
