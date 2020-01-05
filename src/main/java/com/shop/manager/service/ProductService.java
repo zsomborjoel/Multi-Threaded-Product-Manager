@@ -62,8 +62,8 @@ public class ProductService {
             }
             return products;
         } catch (Exception e) {
-            LOGGER.error("Error occured during CSV file persing {}", e);
-            throw new Exception("Error occured during CSV file persing {}", e);
+            LOGGER.error("Error occured during CSV file parsing {}", e);
+            throw new Exception("Error occured during CSV file parsing {}", e);
         }
     }
 
